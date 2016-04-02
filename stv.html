@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="frontend.js"></script>
+    <script src="result_v2.js"></script>
+    <style>
+    .bar {
+        width:100px;
+        height:40px;
+        background-color:red;
+        text-align:center;
+        padding-top:0.1%;
+    };
+
+    #status {
+        text-align:center;
+    };
+
+    </style>
+</head>
+<body>
+
+<h1 style="text-align:center;">FC Election - Results</h1>
+<div>
+    <p id="status">This is a paragraph.</p>
+</div>
+<div id="cand_list">
+    <!-- <div class="candidate">
+        <h3 id="1">Arihant Jain</h3>
+        <div id="1_size" class="bar"></div>
+    </div>
+
+    <div class="candidate">
+        <h3 id="2">Arihant Jain</h3>
+        <div id="2_size" class="bar"></div>
+    </div>
+
+    <div class="candidate">
+        <h3 id="3">Arihant Jain</h3>
+        <div id="3_size" class="bar"></div>
+    </div>
+    <div class="candidate">
+        <h3 id="4">Arihant Jain</h3>
+        <div id="4_size" class="bar"></div>
+    </div> -->
+</div>
+
+<script>
+    initDS();
+    calcResult();
+</script>
+</body>
+</html>
