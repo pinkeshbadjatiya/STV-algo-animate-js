@@ -23,10 +23,16 @@ var t = Math.floor(S/(N+1)) + 1;
 var count = {};
 
 
+function printB(){
+    for(var i=0; i<B.length;i++) {
+        console.log(B[i]);
+    }
+}
+
 function initDS() {
     for(i in CandidateMap) {          // Init count to zero
         count[i] = 0.0;
-        createCandidate(i,CandidateMap[i]);
+        // createCandidate(i,CandidateMap[i]);
     }
     for (var i=0;i<B.length;i++) {      //Initial Counting
         count[B[i][0]] += 1.0;
@@ -80,7 +86,13 @@ function TransferUp(c) {
 }
 
 function removeTrace(cand) {
-    delete(count[cand]);        // Just Remove from count dict
+    delete(count[cand]);                    // Remove from count dict
+    for(var i=0; i<B.length; i++) {          // Remove his trace from voteQueues
+        var ind = B[i].indexOf(parseInt(cand));
+        if (ind == -1)
+            continue;
+        B[i].splice(ind, 1);
+    }
 }
 
 function Qualify(TopCand) {
@@ -89,27 +101,35 @@ function Qualify(TopCand) {
 
 function Looser(LastCand) {
     console.log('Looser:',LastCand);
-    frontRemove(LastCand);
+    // frontRemove(LastCand);
 }
 
+
+// var iii=0;
 
 function calcResult() {         // Delegation Determination
     var n=0, TopCand, MaxVotes;
     while(n < N) {
+        // iii+=1;
+        // if (iii>10)
+        //     return;
+        // printB();
         TopCand = NextTopCand(count);
         MaxVotes = count[TopCand];
         // updateStatus('Next Candidate is: ', CandidateMap[TopCand], 'with',MaxVotes);
         if( MaxVotes >= t) {
             Qualify(TopCand);
-            removeTrace(TopCand);
             TransferDown(TopCand, MaxVotes);
             n += 1;
         } else {
             // Get the bottom candidate as Top :P
             TopCand = NextBottomCand(count);
             Looser(TopCand);
-            removeTrace(TopCand);
             TransferUp(TopCand);
         }
+        removeTrace(TopCand);
     }
 }
+
+initDS();
+calcResult();
