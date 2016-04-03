@@ -9,7 +9,8 @@
 `B` - Ballots  
 `B[i]` = [𝕔1, 𝕔2, ...]  -  Candidate Roll, with priority c1 > c2 > ..  
 `t` - Threshold  
-`winners` - Stores the winner candidates in the order of votes.  
+`Winners` - Stores the winner candidates in the order of votes.  
+`Loosers` - Stores the sure loosing candidates in the order of votes. After all the iterations, the remaining candidates too loose.  
 
 
 ### Assumption
