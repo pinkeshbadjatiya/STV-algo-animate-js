@@ -8,7 +8,8 @@
 `S` - Size of Electorate (in attendance)  
 `B` - Ballots  
 `B[i]` = [𝕔1, 𝕔2, ...]  -  Candidate Roll, with priority c1 > c2 > ..  
-`t` - Threshold
+`t` - Threshold  
+`winners` - Stores the winner candidates in the order of votes.  
 
 
 ### Assumption
@@ -19,4 +20,8 @@
 
 ### Features
 - Randomly choose among the people with same votes to ensure fairness.
-- Fraction precision upto 40 decimal places
+- Fraction precision upto 40 decimal places  
+- Check if re-election is needed. (This possibility won't e there bcoz of Droop quota, but still)
+
+### Algorithm & Proof
+[Google Docs](https://docs.google.com/document/d/1G2qwbsjXX_-1gop6H3xsHkQaoUvn9gRdyS0dKxYQZNo/edit?usp=sharing)

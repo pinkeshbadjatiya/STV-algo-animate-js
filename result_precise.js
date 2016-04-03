@@ -21,7 +21,8 @@ var CandidateMap = {
 var S = Big(B.length);
 var t = Big(S).div((N+1)).plus(1).round(0,0);       // equivalent to Math.floor(stuff)..
 var count = {};
-
+var Winners = [];   // Stores the winner candidates in order of votes.
+var Loosers = [];   // Stores the winner candidates in order of votes.
 
 function printB() {
     for(var i=0; i<B.length;i++) {
@@ -105,22 +106,28 @@ function removeTrace(cand) {
 }
 
 function Qualify(TopCand) {
+    Winners.push(TopCand);
     console.log('Winner:', TopCand);
 }
 
 function Looser(LastCand) {
+    Loosers.push(LastCand);
     console.log('Looser:', LastCand);
     // frontRemove(LastCand);
 }
 
-function reElectionRequired() {
-    alert('Papa says. Do it again !!');
+function checkReElectionRequired() {
+    if (Winners.length != N)        // If winners != Delegations then declare re-election
+        alert('Papa says. Do it again !!');
 }
 
 
 function calcResult() {         // Delegation Determination
     var n=0, TopCand, MaxVotes;
     while(n < N) {
+        if (!Object.keys(count).length) {      // No more candidates left, so break and check Re-Election
+            break;
+        }
         TopCand = NextTopCand(count);
         MaxVotes = count[TopCand];
         // updateStatus('Next Candidate is: ', CandidateMap[TopCand], 'with',MaxVotes);
@@ -135,6 +142,7 @@ function calcResult() {         // Delegation Determination
         }
         removeTrace(TopCand);
     }
+    checkReElectionRequired()
 }
 
 initDS();
