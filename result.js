@@ -105,15 +105,9 @@ function Looser(LastCand) {
 }
 
 
-// var iii=0;
-
 function calcResult() {         // Delegation Determination
     var n=0, TopCand, MaxVotes;
     while(n < N) {
-        // iii+=1;
-        // if (iii>10)
-        //     return;
-        // printB();
         TopCand = NextTopCand(count);
         MaxVotes = count[TopCand];
         // updateStatus('Next Candidate is: ', CandidateMap[TopCand], 'with',MaxVotes);
@@ -131,5 +125,5 @@ function calcResult() {         // Delegation Determination
     }
 }
 
-initDS();
-calcResult();
+// initDS();
+// calcResult();
