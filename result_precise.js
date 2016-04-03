@@ -43,25 +43,33 @@ function initDS() {
 
 
 function NextTopCand(dict) {
-    var key, val = Big(-1);
+    var res = [];
+    var val = Big(-1);
     for(i in dict) {
        if ((dict[i]).gte(val)) {
+           if (!(dict[i]).eq(val)) {
+               res = [];
+           }
            val = dict[i];
-           key = i;
+           res.push(i);                 // Push person with same votes
        }
     }
-    return key;
+    return res[Math.floor(Math.random()*res.length)];   // Return random person from those with same no of votes
 }
 
 function NextBottomCand(dict) {
-    var key, val = Big(9999999);
+    var res = [];
+    var val = Big(9999999);
     for(i in dict) {
        if ((dict[i]).lt(val)) {
+           res = [];
+           res.push(i);
            val = dict[i];
-           key = i;
+      } else if((dict[i]).eq(val)) {
+          res.push(i);                  // Push person with same votes
        }
     }
-    return key;
+    return res[Math.floor(Math.random()*res.length)];   // Return random person from those with same no of votes
 }
 
 
@@ -100,12 +108,16 @@ function removeTrace(cand) {
 }
 
 function Qualify(TopCand) {
-    console.log('Winner:',TopCand);
+    console.log('Winner:', TopCand);
 }
 
 function Looser(LastCand) {
-    console.log('Looser:',LastCand);
+    console.log('Looser:', LastCand);
     // frontRemove(LastCand);
+}
+
+function reElectionRequired() {
+    alert('Papa says. Do it again !!');
 }
 
 
@@ -120,11 +132,12 @@ function calcResult() {         // Delegation Determination
             TransferDown(TopCand, MaxVotes);
             n += 1;
         } else {
-            // Get the bottom candidate as Top :P
-            TopCand = NextBottomCand(count);
+            TopCand = NextBottomCand(count);        // Get the bottom candidate as Top :P
             Looser(TopCand);
             TransferUp(TopCand);
         }
         removeTrace(TopCand);
     }
 }
+
+initDS();
