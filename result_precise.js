@@ -34,7 +34,7 @@ function initDS() {
     Big.DP = 40;        // The maximum number of decimal places of the results of operations involving division.
     for(i in CandidateMap) {          // Init count to zero
         count[i] = Big(0);
-        // createCandidate(i,CandidateMap[i]);
+        createCandidate(i,CandidateMap[i]);
     }
     for (var i=0;i<B.length;i++) {      //Initial Counting
         count[B[i][0]] = (count[B[i][0]]).plus(1.0);
@@ -113,7 +113,7 @@ function Qualify(TopCand) {
 function Looser(LastCand) {
     Loosers.push(LastCand);
     console.log('Looser:', LastCand);
-    // frontRemove(LastCand);
+    frontRemove(LastCand);
 }
 
 function checkReElectionRequired() {
@@ -130,7 +130,7 @@ function calcResult() {         // Delegation Determination
         }
         TopCand = NextTopCand(count);
         MaxVotes = count[TopCand];
-        // updateStatus('Next Candidate is: ', CandidateMap[TopCand], 'with',MaxVotes);
+        updateStatus('Next Candidate is: ' + CandidateMap[TopCand] + ' with ' + MaxVotes);
         if( MaxVotes.gte(t)) {
             Qualify(TopCand);
             TransferDown(TopCand, MaxVotes);
@@ -144,5 +144,3 @@ function calcResult() {         // Delegation Determination
     }
     checkReElectionRequired()
 }
-
-initDS();
