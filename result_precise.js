@@ -108,11 +108,17 @@ function removeTrace(cand) {
 function Qualify(TopCand) {
     Winners.push(TopCand);
     console.log('Winner:', TopCand);
+    P=document.createElement('p');
+    P.innerHTML = "Winner:" + TopCand;
+    document.body.appendChild(P);
 }
 
 function Looser(LastCand) {
     Loosers.push(LastCand);
     console.log('Looser:', LastCand);
+    P=document.createElement('p');
+    P.innerHTML = "Looser:" + LastCand;
+    document.body.appendChild(P);
     frontRemove(LastCand);
 }
 
